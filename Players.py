@@ -1,5 +1,4 @@
-from OthelloBoard import is_legal_move
-from OthelloBoard import play_move, count_score
+from OthelloBoard import *
 
 
 class Player:
@@ -37,7 +36,7 @@ class AlphaBetaPlayer(Player):
     prune: bool
         1 for alpha-beta, 0 otherwise
     max_depth: one move makes the depth of a position to 1, search should not exceed depth
-    total_nodes_seen: used to keep track of the number of nodes the algorithm has seearched through
+    total_nodes_seen: used to keep track of the number of nodes the algorithm has searched through
     symbol: X for player 1 and O for player 2
     """
     def __init__(self, symbol, eval_type, prune, max_depth):
@@ -81,6 +80,11 @@ class AlphaBetaPlayer(Player):
             return "X"
 
 
+    def minimax(self, board, max):
+        if self.depth == 0 or self.terminal_state(board):
+            return board.eval_board
+
+
     def alphabeta(self, board):
         # Write minimax function here using eval_board and get_successors
         # type:(board) -> (int, int)
@@ -91,16 +95,16 @@ class AlphaBetaPlayer(Player):
     # takes p1 number of tiles and subtracts p2 tiles for a value
     def number_pieces(self, board):
         temp = board.cloneOBoard()
-        p1_score = count_score(temp, temp.p1_symbol)
-        p2_score = count_score(temp, temp.p2_symbol)
+        p1_score = temp.count_score(temp, temp.p1_symbol)
+        p2_score = temp.count_score(temp, temp.p2_symbol)
         value = p1_score - p2_score
         return value
 
     # takes p1 number of available moves - p2 number of available moves
     def mobiliy(self, board):
         temp = board.cloneOBoard()
-        p1_val = len(temp.get_successors(self.board, self.p1_symbol))
-        p2_val = len(temp.get_successors(self.board, self.p2_symbol))
+        p1_val = len(temp.get_successors(temp.board, temp.p1_symbol))
+        p2_val = len(temp.get_successors(temp.board, temp.p2_symbol))
         value = p1_val - p2_val
         return value
 
@@ -110,10 +114,10 @@ class AlphaBetaPlayer(Player):
         value = 0
         # number of pieces heuristic
         if self.eval_type == 0:
-            value = self.number_pieces(self.board)
+            value = self.number_pieces(board)
         # number of available moves heuristic
         elif self.eval_type == 1:
-            value = self.mobility(self.board)
+            value = self.mobility(board)
         # my own heuristic
         elif self.eval_type == 2:
             value = 2
@@ -126,7 +130,7 @@ class AlphaBetaPlayer(Player):
         successors = []
         for i in range(0,4):
             for j in range(0,4):
-                if(is_legal_move(board, i, j, player_symbol)):
+                if(board.is_legal_move(board, i, j, player_symbol)):
                     validMove = [i,j]
                     successors.append(validMove)
         return successors 
