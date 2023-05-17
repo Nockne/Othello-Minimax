@@ -11,8 +11,7 @@ class Player:
     
     def get_move(self, board):
         raise NotImplementedError()
-
-
+    
 
 class HumanPlayer(Player):
     """Human subclass with text input in command line"""
@@ -41,6 +40,7 @@ class AlphaBetaPlayer(Player):
     """
     def __init__(self, symbol, eval_type, prune, max_depth):
         Player.__init__(self, symbol)
+        self.turn = 0
         self.eval_type = eval_type
         self.prune = prune
         self.max_depth = int(max_depth) 
@@ -78,11 +78,33 @@ class AlphaBetaPlayer(Player):
             return "O"
         else:
             return "X"
+        
 
+    def minimax(self, board, maxPlayer):
+        temp = board.cloneOBoard()
+        if self.depth == 0 or self.terminal_state(temp):
+            return temp.eval_board
+        
+        if maxPlayer: # player 1's turn
+            maxEval = 10000
+            temp.children = temp.get_successors(temp, temp.p1_symbol)
+            for i in temp.children:
+                temp2 = temp.cloneOBoard()
+                temp2.play_move(i[0],i[1], temp2.p1_symbol, False)
+                val, bestMove = self.minimax(temp, maxPlayer)
+                maxEval = max(maxEval, val)
+                
+            return maxEval
+        
+        if not maxPlayer: # player 2's turn
+            minEval = -10000
+            temp.children = temp.get_successors(temp, temp.p2_symbol)
+            for i in temp.children:
+                temp2 = temp.cloneOBoard()
+                temp2.play_move(i[0], i[1], temp2.p2_symbol, True)
+                val = self.minimax(temp, maxPlayer)
+                minEval = min(minEval, val)
 
-    def minimax(self, board, max):
-        if self.depth == 0 or self.terminal_state(board):
-            return board.eval_board
 
 
     def alphabeta(self, board):
