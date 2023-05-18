@@ -90,6 +90,7 @@ class GameDriver:
 
 def main():
     board_size = 4 
+    print(sys.argv)
     game = GameDriver(sys.argv[1], sys.argv[2], board_size, board_size, sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7], sys.argv[8])
     game.run()
 
