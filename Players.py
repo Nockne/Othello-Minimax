@@ -40,16 +40,17 @@ class AlphaBetaPlayer(Player):
     """
     def __init__(self, symbol, eval_type, prune, max_depth):
         Player.__init__(self, symbol)
-        self.turn = 0
         self.eval_type = eval_type
         self.prune = prune
         self.max_depth = int(max_depth) 
         self.max_depth_seen = 0
+        self.depth = int(max_depth)
         self.total_nodes_seen = 0
         if symbol == 'X':
             self.oppSym = 'O'
         else:
             self.oppSym = 'X'
+        self.count = 0
 
 
     def terminal_state(self, board):
@@ -80,30 +81,41 @@ class AlphaBetaPlayer(Player):
             return "X"
         
 
-    def minimax(self, board, maxPlayer):
+    def minimax(self, board, depth, maxPlayer):
+        bestMove = None
+        self.count += 1
+        print(self.depth)
         temp = board.cloneOBoard()
-        if self.depth == 0 or self.terminal_state(temp):
-            return temp.eval_board
-        
+        if self.terminal_state(temp) or self.depth == 0:
+            return self.eval_board(board), bestMove
         if maxPlayer: # player 1's turn
-            maxEval = 10000
-            temp.children = temp.get_successors(temp, temp.p1_symbol)
-            for i in temp.children:
-                temp2 = temp.cloneOBoard()
-                temp2.play_move(i[0],i[1], temp2.p1_symbol, False)
-                val, bestMove = self.minimax(temp, maxPlayer)
-                maxEval = max(maxEval, val)
-                
-            return maxEval
+            print("Max Player: Minimax")
+            maxEval = -10000
+            bestMove = None
+            temp.children = self.get_successors(temp, temp.p1_symbol) # get successors from current state
+            print(temp.children)
+            for i in temp.children: # for each successor...
+                temp2 = temp.cloneOBoard() # create a new board
+                temp2.play_move(i[0],i[1], temp2.p1_symbol) # play the successor move on new board
+                val = self.minimax(temp2, depth - 1, False) # recursive call to minimax for all next successors
+                if val[0] > maxEval:
+                    maxEval = val[0]
+                    bestMove = i
+            return maxEval, bestMove
         
         if not maxPlayer: # player 2's turn
-            minEval = -10000
-            temp.children = temp.get_successors(temp, temp.p2_symbol)
+            print("Min Player: Minimax")
+            minEval = 10000
+            bestMove = None
+            temp.children = self.get_successors(temp, temp.p2_symbol)
             for i in temp.children:
                 temp2 = temp.cloneOBoard()
-                temp2.play_move(i[0], i[1], temp2.p2_symbol, True)
-                val = self.minimax(temp, maxPlayer)
-                minEval = min(minEval, val)
+                temp2.play_move(i[0], i[1], temp2.p2_symbol)
+                val = self.minimax(temp2, depth - 1, True)
+                if val[0] < minEval:
+                    minEval = val[0]
+                    bestMove = i
+            return minEval, bestMove
 
 
 
@@ -111,7 +123,12 @@ class AlphaBetaPlayer(Player):
         # Write minimax function here using eval_board and get_successors
         # type:(board) -> (int, int)
         col, row = 0, 0
-        
+        if self.symbol == 'O':
+            val, bestMove = self.minimax(board, self.max_depth, False)
+        if self.symbol == 'X':
+            val, bestMove = self.minimax(board, self.max_depth, True)
+        col = bestMove[0]
+        row = bestMove[1]
         return col, row
 
     # takes p1 number of tiles and subtracts p2 tiles for a value
@@ -152,7 +169,7 @@ class AlphaBetaPlayer(Player):
         successors = []
         for i in range(0,4):
             for j in range(0,4):
-                if(board.is_legal_move(board, i, j, player_symbol)):
+                if(board.is_legal_move(i, j, player_symbol)):
                     validMove = [i,j]
                     successors.append(validMove)
         return successors 
