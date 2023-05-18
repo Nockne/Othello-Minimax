@@ -44,13 +44,11 @@ class AlphaBetaPlayer(Player):
         self.prune = prune
         self.max_depth = int(max_depth) 
         self.max_depth_seen = 0
-        self.depth = int(max_depth)
         self.total_nodes_seen = 0
         if symbol == 'X':
             self.oppSym = 'O'
         else:
             self.oppSym = 'X'
-        self.count = 0
 
 
     def terminal_state(self, board):
@@ -82,18 +80,15 @@ class AlphaBetaPlayer(Player):
         
 
     def minimax(self, board, depth, maxPlayer):
+        self.total_nodes_seen += 1
         bestMove = None
-        self.count += 1
-        print(self.depth)
         temp = board.cloneOBoard()
-        if self.terminal_state(temp) or self.depth == 0:
+        if self.terminal_state(temp) or depth == 0:
             return self.eval_board(board), bestMove
-        if maxPlayer: # player 1's turn
-            print("Max Player: Minimax")
-            maxEval = -10000
-            bestMove = None
+        
+        if maxPlayer: # max player turn
+            maxEval = -1000
             temp.children = self.get_successors(temp, temp.p1_symbol) # get successors from current state
-            print(temp.children)
             for i in temp.children: # for each successor...
                 temp2 = temp.cloneOBoard() # create a new board
                 temp2.play_move(i[0],i[1], temp2.p1_symbol) # play the successor move on new board
@@ -103,10 +98,8 @@ class AlphaBetaPlayer(Player):
                     bestMove = i
             return maxEval, bestMove
         
-        if not maxPlayer: # player 2's turn
-            print("Min Player: Minimax")
-            minEval = 10000
-            bestMove = None
+        if not maxPlayer: # min player turn
+            minEval = 1000
             temp.children = self.get_successors(temp, temp.p2_symbol)
             for i in temp.children:
                 temp2 = temp.cloneOBoard()
@@ -123,10 +116,9 @@ class AlphaBetaPlayer(Player):
         # Write minimax function here using eval_board and get_successors
         # type:(board) -> (int, int)
         col, row = 0, 0
-        if self.symbol == 'O':
-            val, bestMove = self.minimax(board, self.max_depth, False)
-        if self.symbol == 'X':
-            val, bestMove = self.minimax(board, self.max_depth, True)
+        val, bestMove = self.minimax(board, self.max_depth, True)
+
+        print(val, bestMove)
         col = bestMove[0]
         row = bestMove[1]
         return col, row
