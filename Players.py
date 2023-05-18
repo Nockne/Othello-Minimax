@@ -158,7 +158,8 @@ class AlphaBetaPlayer(Player):
         # Write minimax function here using eval_board and get_successors
         # type:(board) -> (int, int)
         col, row = 0, 0
-        if(self.prune):
+        if(self.prune == '1'):
+
             if self.symbol == "X": # if alphabeta is p1
                 val, bestMove = self.minimax_prune(board, self.max_depth, -1000, 1000, True)
             if self.symbol == "O": # if alphabeta is p2
@@ -170,22 +171,20 @@ class AlphaBetaPlayer(Player):
                 val, bestMove = self.minimax(board, self.max_depth, False)
         col = bestMove[0]
         row = bestMove[1]
-        print(self.count)
         return col, row
 
     # takes p1 number of tiles and subtracts p2 tiles for a value
     def number_pieces(self, board):
         temp = board.cloneOBoard()
-        p1_score = temp.count_score(temp, temp.p1_symbol)
-        p2_score = temp.count_score(temp, temp.p2_symbol)
+        p1_score = temp.count_score(temp.p1_symbol)
+        p2_score = temp.count_score(temp.p2_symbol)
         value = p1_score - p2_score
         return value
 
     # takes p1 number of available moves - p2 number of available moves
-    def mobiliy(self, board):
-        temp = board.cloneOBoard()
-        p1_val = len(temp.get_successors(temp.board, temp.p1_symbol))
-        p2_val = len(temp.get_successors(temp.board, temp.p2_symbol))
+    def mobility(self, board):
+        p1_val = len(self.get_successors(board, board.p1_symbol))
+        p2_val = len(self.get_successors(board, board.p2_symbol))
         value = p1_val - p2_val
         return value
 
@@ -194,13 +193,13 @@ class AlphaBetaPlayer(Player):
         # type:(board) -> (float)
         value = 0
         # number of pieces heuristic
-        if self.eval_type == 0:
+        if self.eval_type == '0':
             value = self.number_pieces(board)
         # number of available moves heuristic
-        elif self.eval_type == 1:
+        elif self.eval_type == '1':
             value = self.mobility(board)
         # my own heuristic
-        elif self.eval_type == 2:
+        elif self.eval_type == '2':
             value = 2
         return value
 
@@ -220,7 +219,6 @@ class AlphaBetaPlayer(Player):
     def get_move(self, board):
         # Write function that returns a move (column, row) here using minimax
         # type:(board) -> (int, int)
-        print("getting new move")
         self.count = 0
         return self.alphabeta(board)
 

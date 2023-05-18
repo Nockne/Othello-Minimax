@@ -1,0 +1,230 @@
+--- alphabeta v alphabeta 2 - 12 depth: tiles heuristic no pruning
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 7
+total nodes seen by p1 37
+total nodes seen by p2 48
+Depth: 2
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 7
+total nodes seen by p1 348
+total nodes seen by p2 348
+Depth: 4
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 3678
+total nodes seen by p2 2414
+Depth: 6
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 19872
+total nodes seen by p2 11039
+Depth: 8
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 73329
+total nodes seen by p2 28300
+Depth: 10
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 132637
+total nodes seen by p2 34353
+Depth: 12
+--------------------------------------------
+--- alphabeta v alphabeta 2 - 12 depth: tiles heuristic w/ pruning
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 7
+total nodes seen by p1 37
+total nodes seen by p2 48
+Depth: 2
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 7
+total nodes seen by p1 348
+total nodes seen by p2 348
+Depth: 4
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 3678
+total nodes seen by p2 2414
+Depth: 6
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 19872
+total nodes seen by p2 11039
+Depth: 8
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 73329
+total nodes seen by p2 28300
+Depth: 10
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 132637
+total nodes seen by p2 34353
+Depth: 12
+--------------------------------------------
+--- alphabeta v alphabeta 2 - 12 depth: mobile heuristic no pruning
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 65
+total nodes seen by p2 54
+Depth: 2
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 557
+total nodes seen by p2 405
+Depth: 4
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 3674
+total nodes seen by p2 2579
+Depth: 6
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 19872
+total nodes seen by p2 11039
+Depth: 8
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 73329
+total nodes seen by p2 28300
+Depth: 10
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 132637
+total nodes seen by p2 34353
+Depth: 12
+--------------------------------------------
+--- alphabeta v alphabeta 2 - 12 depth: mobile heuristic w/ pruning
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 65
+total nodes seen by p2 50
+Depth: 2
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 555
+total nodes seen by p2 369
+Depth: 4
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 3674
+total nodes seen by p2 2572
+Depth: 6
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 19868
+total nodes seen by p2 9776
+Depth: 8
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 73325
+total nodes seen by p2 17376
+Depth: 10
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 132633
+total nodes seen by p2 21289
+Depth: 12
+--------------------------------------------
+--- tiles v mobile 2 - 8 depth: w/ pruning
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 49
+total nodes seen by p2 60
+Depth: 2
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 373
+total nodes seen by p2 337
+Depth: 4
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 3681
+total nodes seen by p2 2271
+Depth: 6
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 19868
+total nodes seen by p2 9776
+Depth: 8
+--------------------------------------------
+--- mobile v tiles 2 - 8 depth: w/ pruning
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 65
+total nodes seen by p2 50
+Depth: 2
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 555
+total nodes seen by p2 369
+Depth: 4
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 3674
+total nodes seen by p2 2572
+Depth: 6
+--------------------------------------------
+alphabeta vs. alphabeta
+Player 2 Wins!
+turn count: 12
+total nodes seen by p1 19868
+total nodes seen by p2 9776
+Depth: 8
+--------------------------------------------
